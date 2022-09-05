@@ -25,4 +25,4 @@ def product(request):
     return render(request,'product.html',{})
 
 def logoutuser(request):
-    print("logout")
+    print("salida")
