@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Products | Home </title>
+</head>
+<body>
+    <h1 style="font-size: 20px; font-family: sans-serif; color:navy;">Product List</h1>
+    <h2 style="font-size: 20px; font-family: sans-serif; color:navy;"> Listado de Productos </h2>
+
+    <table>
+        <tr>
+            <th style = "font-family: sans-serif;" > Nombre Producto </th>
+            <th style = "font-family: sans-serif;" > Tamaño </th>
+            <th style = "font-family: sans-serif;" > Color </th>
+            <th style = "font-family: sans-serif;" > SKU </th>
+            <th style = "font-family: sans-serif;" > Categoria </th>
+            <th style = "font-family: sans-serif;" > Proveedor </th>
+        </tr>
+    </table>
+
+    <br>
+    <h2 style="font-size: 20px; font-family: sans-serif; color:navy;"> Crear un Producto </h2>
+
+    <form action = "" method = "post">
+        {% csrf_token %}
+
+        <br>
+        <br>
+        <button type = "submit">Crear Producto</button>
+    </form>
+      
+ </body>
+</html>
