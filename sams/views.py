@@ -10,8 +10,9 @@ def loginuser(request):
     return render(request,'login.html',contexto)
 
 def createuser (request):
-
-    return render(request,'createuser.html',{})
+    user_form = CreateUserForm()
+    contexto = {'user_form': user_form}
+    return render(request,'createuser.html',contexto)
 
 def home (request):
     return render(request,'home.html',{})
