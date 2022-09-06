@@ -19,7 +19,7 @@ from sams import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', views.loginuser),
+    path('login/', views.loginuser, name = 'login'),
     path('newuser/',views.createuser, name= 'createuser'),
     path('logout/', views.logoutuser),
     path('sams/',include('sams.urls'))
