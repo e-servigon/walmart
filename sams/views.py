@@ -6,8 +6,8 @@ from django.contrib.auth import authenticate, login
 
 def loginuser(request):
     login_form = AutheticationUserForm()
-    contexto = {'login_form', login_form}
-    return render(request,'login.html',login_form)
+    contexto = {'login_form': login_form}
+    return render(request,'login.html',contexto)
 
 def createuser (request):
 
