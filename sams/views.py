@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from .forms import * 
 from .models import *
-
+from django.contrib.auth import authenticate, login 
 # Create your views here.
 
 def loginuser(request):
-   
-    return render(request,'login.html',{})
+    login_form = AutheticationUserForm()
+    contexto = {'login_form', login_form}
+    return render(request,'login.html',login_form)
 
 def createuser (request):
 
