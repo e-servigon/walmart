@@ -70,6 +70,30 @@ def category(request):
 
 @login_required
 def product(request):
-    return render(request,'product.html',{})
+    product_list= Product.objects.all()
+    contexto = {'product_list':product_list}
+    product_form = CreateProductForm()
+    contexto['product_form'] = product_form
+    count= Product.objects.count()
+    if count== 0:
+        print("no hay datos")
+        contexto['empty_product']= True
+    
+    if request.method == 'POST':
+        print("entre en post")
+        product_form = CreateProductForm(request.POST)
+        print(product_form.errors)
+        if product_form.is_valid():
+            try:
+                product_validate = Product.objects.get(product_sku=request.POST.get('product_sku'))
+                if product_validate is not None:
+                    contexto['duplicated_product'] = True
+                    print("imprimir producto")
+                    print(product_validate)
+            except:
+                print("en catch")
+                product_form.save()
+                return redirect('product')
+    return render(request,'product.html',contexto)
 
 
