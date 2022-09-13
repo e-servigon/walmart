@@ -1,26 +1,27 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
 class Category(models.Model):
-    category_name = models.CharField(max_length=255)
+    category_name = models.CharField(max_length=255,blank=True,null=True)
     created_date = models.DateTimeField()
 
     def __str__ (self):
         return 'la categoria es: %s' % (self.category_name)
 
 class Vendor(models.Model):
-    vendor_name = models.CharField(max_length=255)
-    vendor_category = models.CharField(max_length=255)
-    created_date = models.DateTimeField()
+    vendor_name = models.CharField(max_length=255,blank=True,null=True)
+    vendor_category = models.CharField(max_length=255,blank=True,null=True)
+    created_date = models.DateTimeField(default=timezone.now, blank=True,null=True)
     def __str__ (self):
         return 'el proveedor es: %s %s' % (self.vendor_name,self.vendor_category )
 
 class Product(models.Model):
-    product_name = models.CharField(max_length=255)
-    product_size = models.CharField(max_length=255)
-    product_color = models.CharField(max_length=255)
-    product_sku = models.CharField(max_length=255)
+    product_name = models.CharField(max_length=255,blank=True,null=True)
+    product_size = models.CharField(max_length=255,blank=True,null=True)
+    product_color = models.CharField(max_length=255,blank=True,null=True)
+    product_sku = models.CharField(max_length=255,blank=True,null=True)
     created_date = models.DateTimeField()
 
     def __str__ (self):

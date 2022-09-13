@@ -18,11 +18,6 @@ class CreateProductForm(forms.ModelForm):
         model = Product
         fields = "__all__"
 
-    def __init__(self,*args,**kwargs):
-        super().__init__(*args,**kwargs)
-        self.fields['vendor'].queryset= Vendor.objects.all()
-
-
 class CreateVendorForm(forms.ModelForm):
     class Meta:
         model = Vendor

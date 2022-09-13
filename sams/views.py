@@ -30,16 +30,32 @@ def createuser (request):
             return redirect('login')
     return render(request,'createuser.html',contexto)
 
+
+
 def home (request):
     return render(request,'home.html',{})
 
 def vendor(request):
     vendor_list= Vendor.objects.all()
+    vendor_form = CreateVendorForm()
+    contexto = {'vendor_form': vendor_form}
+    contexto ['vendor_list'] = vendor_list
     count= Vendor.objects.count()
-    contexto={}
     if count== 0:
         print("no hay datos")
         contexto['empty_vendor']= True
+    if request.method== 'POST':
+        print(request.POST)
+        vendor_form = CreateVendorForm(request.POST)
+        print(vendor_form.errors)
+        try:
+            vendor_validate = Vendor.objects.get(vendor_name = request.POST.get('vendor_name'))
+            if vendor_validate is not None:
+                    contexto['duplicated_vendor']= True
+        except:
+                if vendor_form.is_valid():
+                    vendor_form.save()
+                    return redirect('vendor')
     return render(request,'vendor.html',contexto)
 
 def category(request):

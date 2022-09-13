@@ -11,7 +11,7 @@
     <h1 style="font-size: 20px; font-family: sans-serif; color:navy;">Vendor Menu</h1>
     <h2 style="font-size: 20px; font-family: sans-serif; color:navy;"> Listado de Proveedores </h2>
 {% if empty_vendor %}
-<p> no hay Proveedor</p>
+<h3 style="font-size: 20px; font-family: sans-serif; color:rgb(255, 4, 4);"> no hay Proveedor</h3>
 {%  else  %}
 
     <table>
@@ -19,18 +19,35 @@
             <th style = "font-family: sans-serif;" > Nombre Proveedor </th>
             <th style = "font-family: sans-serif;" > Categoria Proveedor </th>
         </tr>
+        {% for vendor in vendor_list %}
+        <tr>
+            <td> {{vendor.vendor_name}} </td>
+            <td> {{vendor.vendor_category}} </td>
+        </tr>
+        {% endfor %}
     </table>
     <br>
-    <h2 style="font-size: 20px; font-family: sans-serif; color:navy;"> Crear un Proveedor </h2>
-    {%  endif  %}
 
+    {%  endif  %}
+    <h2 style="font-size: 20px; font-family: sans-serif; color:navy;"> Crear un Proveedor </h2>
     <form action = "" method = "post">
         {% csrf_token %}
-        
+        <table>
+            <tr> 
+                <td style="font-size: 15px; font-family: sans-serif" >Nombre del proveedor</td>
+                <td> {{vendor_form.vendor_name}} </td>
+            </tr>
+            <tr> 
+                <td style="font-size: 15px; font-family: sans-serif" >Categoria del proveedor</td>
+                <td> {{vendor_form.vendor_category}} </td>
+            </tr>
+        </table>
         <br>
         <button type = "submit">Create Vendor</button>
     </form>
-
+    {% if duplicated_vendor %}
+    <h3 style="font-size: 20px; font-family: sans-serif; color:rgb(255, 4, 4);"> Proveedor repetido</h3>
+    {% endif %}
  </body>
 </html>
 
