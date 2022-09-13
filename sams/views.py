@@ -18,6 +18,7 @@ from django.contrib.auth.decorators import login_required
             login(request, user_authenticate)
             return redirect('home')
     return render(request,'login.html',contexto)'''
+
 @login_required
 def createuser (request):
     user_form = CreateUserForm()
@@ -37,11 +38,11 @@ def home (request):
 @login_required
 def vendor(request):
     vendor_list= Vendor.objects.all()
-    vendor_form = CreateVendorForm()
-    contexto = {'vendor_form': vendor_form}
     contexto = {'vendor_list':vendor_list}
+    vendor_form = CreateVendorForm()
+    contexto['vendor_form'] = vendor_form
     count= Vendor.objects.count()
-    contexto={}
+
     if count== 0:
         print("no hay datos")
         contexto['empty_vendor']= True
@@ -54,7 +55,7 @@ def vendor(request):
             try:
                 vendor_validate = Vendor.objects.get(vendor_name=request.POST.get('vendor_name'))
                 if vendor_validate is not None:
-                    contexto['vendor_exist'] = True
+                    contexto['duplicated_vendor'] = True
                     print("imprimir vendor")
                     print(vendor_validate)
             except:
@@ -62,8 +63,6 @@ def vendor(request):
                 vendor_form.save()
                 return redirect('vendor')
     return render(request,'vendor.html',contexto)
-
-   
 
 @login_required
 def category(request):
