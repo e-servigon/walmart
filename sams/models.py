@@ -24,6 +24,7 @@ class Product(models.Model):
     product_sku = models.CharField(max_length=255,blank=True,null=True)
     vendor= models.ForeignKey(Vendor ,null=True,on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now, blank=True,null=True)
+    deleted_date = models.DateTimeField(blank=True, null=True)
 
     def __str__ (self):
         return 'el producto es: %s %s %s' % (self.product_name, self.product_size, self.product_color)

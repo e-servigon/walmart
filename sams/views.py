@@ -19,7 +19,6 @@ from django.contrib.auth.decorators import login_required
             return redirect('home')
     return render(request,'login.html',contexto)'''
 
-@login_required
 def createuser (request):
     user_form = CreateUserForm()
     contexto = {'user_form': user_form}
@@ -70,7 +69,7 @@ def category(request):
 
 @login_required
 def product(request):
-    product_list= Product.objects.all()
+    product_list = Product.objects.filter(deleted_date__isnull=True)
     contexto = {'product_list':product_list}
     product_form = CreateProductForm()
     contexto['product_form'] = product_form
@@ -95,5 +94,19 @@ def product(request):
                 product_form.save()
                 return redirect('product')
     return render(request,'product.html',contexto)
+
+@login_required
+def delete_product (request, product_id):
+    product = Product.objects.get(pk=product_id)
+    data_context = {'product':product}
+    if request.method == 'POST':
+        print (request.POST)
+        if 'yes' in request.POST:
+            product.deleted_date = timezone.now()
+            product.save()
+            return redirect('product')
+        elif 'no' in request.POST:
+            return redirect('product')
+    return render(request,'delete_product.html',data_context)
 
 
