@@ -22,5 +22,5 @@ urlpatterns = [
     path('vendor/',views.vendor, name='vendor'),
     path('category/',views.category),
     path('product/',views.product, name='product'),
-    
+    path('deleteproduct/<int:product_id>',views.delete_product, name ='deleteproduct'),   
 ]
