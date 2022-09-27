@@ -19,7 +19,7 @@ from sams import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/',include('django.contrib.auth.urls')),
     path('newuser/',views.createuser, name= 'createuser'),
     path('sams/',include('sams.urls'))
 ]

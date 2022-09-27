@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product,Category,Vendor
+from .models import Product,Vendor, ExtendedData
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
@@ -13,17 +13,22 @@ class AutheticationUserForm(AuthenticationForm):
         model = User
         fields = ['username','password']
 
-class CreateProductForm(forms.ModelForm):
-    class Meta:
-        model = Product
-        fields = "__all__"
-
 class CreateVendorForm(forms.ModelForm):
     class Meta:
         model = Vendor
         fields = "__all__"
 
-class CreateCategoryForm(forms.ModelForm):
+class UserProfileForm(forms.ModelForm):
     class Meta:
-        model = Category
+        model = ExtendedData
         fields = "__all__"
+
+class CreateProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = "__all__"
+
+class SearchProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['product_name']

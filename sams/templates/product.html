@@ -9,9 +9,13 @@
 <body>
     <h1 style="font-size: 20px; font-family: sans-serif; color:navy;">Product List</h1>
     <h2 style="font-size: 20px; font-family: sans-serif; color:navy;"> Listado de Productos </h2>
+
+    <a style = "font-family: sans-serif; font-size: smaller;" href="{% url 'searchproducts' %} "> Buscar Productos </a>
+    <br>
+    <br>
     {% if empty_product %}
-    <h3 style="font-size: 20px; font-family: sans-serif; color:rgb(255, 4, 4);"> no hay producto</h3>
-    {%  else  %}
+    <h3 style="font-size: 12px; font-family: sans-serif; color:red;"> No hay productos cargados </h3>
+    {% else %}
     <table>
         <tr>
             <th style = "font-family: sans-serif;" > Nombre Producto </th>
@@ -19,52 +23,55 @@
             <th style = "font-family: sans-serif;" > Color </th>
             <th style = "font-family: sans-serif;" > SKU </th>
             <th style = "font-family: sans-serif;" > Proveedor </th>
-            <th style = "font-family: sans-serif;" > Opciones </th>           
-                 </tr>
+            <th style = "font-family: sans-serif;" > Opciones </th>
+        </tr>
         {% for product in product_list %}
         <tr>
-            <td> {{product.product_name}} </td>
-            <td> {{product.product_size}} </td>
-            <td> {{product.product_color}} </td>  
-            <td> {{product.product_sku}} </td>
-            <td> {{product.vendor}} </td>
+            <td> {{product.product_name}}</td>
+            <td> {{product.product_size}}</td>
+            <td> {{product.product_color}}</td>
+            <td> {{product.product_sku}}</td>
+            <td> {{product.vendor}}</td>
             <td> <a style="font-size: 15px; font-family: sans-serif" href="{% url 'deleteproduct' product.id %}"> Borrar Producto </a></td>
         </tr>
-        {% endfor %}
+        {%endfor%}
     </table>
-    {%  endif  %}
-
-    <br>
+    {% endif %}
     <h2 style="font-size: 20px; font-family: sans-serif; color:navy;"> Crear un Producto </h2>
-
     <form action = "" method = "post">
         {% csrf_token %}
         <table>
             <tr> 
-                <td style="font-size: 15px; font-family: sans-serif" >Nombre del producto</td>
-                <td> {{product_form.product_name}} </td>
+                <td style="font-size: 15px; font-family: sans-serif" > Nombre Producto</td>
+                <td>{{product_form.product_name}}</td>
             </tr>
             <tr> 
-                <td style="font-size: 15px; font-family: sans-serif" >tamaño del producto</td>
-                <td> {{product_form.product_size}} </td>
+                <td style="font-size: 15px; font-family: sans-serif" >Tamaño Producto</td>
+                <td>{{product_form.product_size}}</td>
             </tr>
             <tr> 
-                <td style="font-size: 15px; font-family: sans-serif" >color del producto</td>
-                <td> {{product_form.product_color}} </td>
+                <td style="font-size: 15px; font-family: sans-serif" >Color Producto</td>
+                <td>{{product_form.product_color}}</td>
             </tr>
-            <tr> 
-                <td style="font-size: 15px; font-family: sans-serif" >SKU del producto</td>
-                <td> {{product_form.product_sku}} </td>
+            <tr>  
+                <td style="font-size: 15px; font-family: sans-serif" >SKU de Producto</td>
+                <td>{{product_form.product_sku}}</td>
             </tr>
-            <tr> 
-                <td style="font-size: 15px; font-family: sans-serif" >proveedor del producto</td>
-                <td> {{product_form.vendor}} </td>
+            <tr>
+                <td style="font-size: 15px; font-family: sans-serif" >Proveedor</td>
+                <td>{{product_form.vendor}}</td>
             </tr>
         </table>
         <br>
-        <br>
-        <button type = "submit">Crear Producto</button>
+        <button type = "submit" name="CreateProduct">Crear Producto</button>
     </form>
-      
+    <br>
+
+    {% if product_exist %}
+    <h3 style="font-size: 12px; font-family: sans-serif; color:red;"> Producto duplicado </h3>
+    {% endif%}
+
+    <a style = "font-family: sans-serif; font-size: smaller;" href="{% url 'home' %} "> Regresar a inicio </a>
+
  </body>
 </html>

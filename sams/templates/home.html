@@ -1,26 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cmp.osano.com/16CPRYTHETjms18e/a2518af5-a692-4ba2-907b-2587169c4f68/osano.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sams Club Portal | Home </title>
+
 </head>
 <body>
     <h1 style="font-size: 20px; font-family: sans-serif; color:navy;">Home Screen</h1>
+    
+    <h2 style="font-size: 20px; font-family: sans-serif; color:navy;"> Hola {{user_data.first_name}} </h2>
+    
+    {% if user_extended_data.user_type == "B" %}
+    <h2 style="font-size: 20px; font-family: sans-serif; color:rgb(115, 0, 128);"> Eres comprador </h2>
+    {% else %}
+    <h2 style="font-size: 20px; font-family: sans-serif; color:rgb(128, 115, 0);"> Eres resurtidor </h2>
+    {% endif %}
+
     <h2 style="font-size: 20px; font-family: sans-serif; color:navy;"> Menu Principal </h2>
+
     <table>
         <tr>
             <th style = "font-family: sans-serif;" > Escoge las opciones </th>
         </tr>
-        <tr>
+            
+        {% if user_extended_data.user_type == "B" %}
+        <tr> 
             <td> <a style = "font-family: sans-serif;" href="{% url 'vendor' %} "> Proveedores </a></td>
-        </tr>
+        </tr>    
+        {% endif %}
+
         <tr>
             <td> <a style = "font-family: sans-serif;" href="{% url 'product' %}"> Productos </a></td>
         </tr>
     </table>
     <br>
-    <a style = "font-family: sans-serif;" href=" {% url 'logout' %}"> Logout </a></span>
+
+    <a style = "font-family: sans-serif;" href="{% url 'logout' %}"> Logout </a></span>
  </body>
 </html>
