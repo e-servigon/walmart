@@ -50,3 +50,14 @@ def vendor(request):
 
     return render(request,'vendor.html',data_context)
 
+def updatevendor(request, vendor_id):
+    vendor = Vendor.objects.get(pk = vendor_id)
+    edit_vendor_form = EditVendorForm()
+    data_context = {'vendor':vendor,'edit_vendor_form':edit_vendor_form}
+    if request.method == "POST":
+        edit_vendor_form = EditVendorForm(request.POST,instance = vendor)
+        if edit_vendor_form.is_valid():
+            edit_vendor_form.save()
+            return redirect('vendor')
+    return render(request,'update_vendor.html',data_context)
+

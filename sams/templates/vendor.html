@@ -21,6 +21,7 @@
         <tr>
             <td>{{vendor.vendor_name}}</td>
             <td>{{vendor.vendor_type}}</td>
+            <td><a href="{% url 'updatevendor' vendor.id %}">Actualizar Provedor</a></td>
         </tr>
     {% endfor %}
     </table>

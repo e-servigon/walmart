@@ -7,7 +7,18 @@
     <title> Editar Vendor </title>
 </head>
 <body>
-<h1 style="font-size: 20px; font-family: sans-serif; color:navy;"> Editar datos de vendor </h1>
+<h1 style="font-size: 20px; font-family: sans-serif; color:navy;"> Editar datos de vendor {{vendor.vendor_name}}</h1>
+<form method="post" action=" ">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td style="font-size: 15px; font-family: sans-serif;">Tipo de Proveedor</td>
+            <td> {{edit_vendor_form.vendor_type}} </td>
+        </tr>
+    </table>
+    <br>
+    <button type="submit">Actualizar Proveedor </button>
+</form>
 <br>
 <a style = "font-family: sans-serif; font-size: smaller;" href="{% url 'home' %} "> Regresar a inicio </a>
 </body>
