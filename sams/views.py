@@ -26,27 +26,30 @@ def createuser (request):
             return redirect('login')
     return render(request,'create_user.html',contexto)
 
-def vendor(request):
+
+def vendor (request):
     vendor_list = Vendor.objects.all()
-    vendor_count = Vendor.objects.count()
+    vendor_count= Vendor.objects.count()
     vendor_form = CreateVendorForm()
     data_context = {'vendor_list':vendor_list,'vendor_form':vendor_form}
-    print("el conteo de proveedors es: ",vendor_count)
+    print("el conteo de proveedores es: ",vendor_count)
     if vendor_count == 0:
         data_context['empty_vendor'] = True
-    
-    if request.method == "POST":
+
+    if request.method == 'POST':
         print(request.POST)
         vendor_form = CreateVendorForm(request.POST)
         if vendor_form.is_valid():
             try:
-                vendor_validate = Vendor.objects.get(vendor_name = request.POST.get('vendor_name'))
+                vendor_validate = Vendor.objects.get(vendor_name=request.POST.get('vendor_name'))
                 if vendor_validate is not None:
                     data_context['vendor_exist'] = True
-            except:
+            except:        
                 vendor_form.save()
                 return render(request,'vendor.html',data_context)
-
-
+            
+        
     return render(request,'vendor.html',data_context)
+
+
 

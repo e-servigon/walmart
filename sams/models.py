@@ -1,6 +1,6 @@
 from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 class ExtendedData(models.Model):
     TYPE_CHOICES = [("B","Comprador"), ("R","Replenisher")]
@@ -9,11 +9,13 @@ class ExtendedData(models.Model):
     
     def __str__ (self):
         return 'el user_type es: %s' % (self.user_type)  
-
-class Vendor(models.Model):
-    vendor_name = models.CharField(max_length= 255)
-    vendor_type = models.CharField(max_length= 255)
-    created_date = models.DateTimeField(default = timezone.now, blank= True, null = True)
     
-    def __str__ (self):
-        return 'el vendor es: %s %s' % (self.vendor_name, self.vendor_type)
+class Vendor(models.Model):
+    vendor_name = models.CharField(max_length=255)
+    vendor_type = models.CharField(max_length=255)
+
+    created_date = models.DateTimeField(default=timezone.now(), blank=True, null=True)
+
+
+    def __str__(self):
+        return 'el vendor es: %s %s ' % (self.vendor_name, self.vendor_type)

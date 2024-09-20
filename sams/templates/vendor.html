@@ -9,46 +9,50 @@
 <body>
     <h1 style="font-size: 20px; font-family: sans-serif; color:navy;">Vendor Menu</h1>
     <h2 style="font-size: 20px; font-family: sans-serif; color:navy;"> Listado de Proveedores </h2>
+
+    <br>
+    <br>
     {% if empty_vendor %}
-    <h3 style="font-size: 12px; font-family: sans-serif; color:rgb(250, 5, 5);"> No hay proveedores cargados </h3>
+        <h3 style="font-size: 12px; font-family: sans-serif; color:rgb(255, 0, 0);"> No hay Proveedores </h3>
     {% else %}
-    <table>
+    
+        <table>
+            <tr>
+                <th style="font-family: sans-serif;"> Nombre Proveedor</th>
+                <th style="font-family: sans-serif;"> Tipo Proveedor</th>
+            </tr>
+    
+        {% for vendor in vendor_list %}
         <tr>
-            <th style="font-family: sans-serif;"> Nombre Proveedor</th>
-            <th style="font-family: sans-serif;"> Tipo Proveedor</th>
+            <td>{{ vendor.vendor_name }}</td>
+            <td>{{ vendor.vendor_type }}</td>
         </tr>
-    {% for vendor in vendor_list %}
-        <tr>
-            <td>{{vendor.vendor_name}}</td>
-            <td>{{vendor.vendor_type}}</td>
-        </tr>
-    {% endfor %}
-    </table>
+        {% endfor %}
+
+        </table>
     {% endif %}
+
     <br>
     <h2 style="font-size: 20px; font-family: sans-serif; color:navy;"> Crear Proveedores </h2>
-    <form action = "" method = "post">
+    <form action="" method="post">
         {% csrf_token %}
         <table>
             <tr>
-                <td style="font-size: 15px; font-family: sans-serif;">Nombre de Proveedor</td>
-                <td>{{vendor_form.vendor_name}}</td>
+                <td style ="font-size: 15px;font-family: sans-serif;">Nombre Proveedor</td>
+                <td>{{ vendor_form.vendor_name }}</td>
             </tr>
             <tr>
-                <td style="font-size: 15px; font-family: sans-serif;">Tipo de Proveedor</td>
-                <td> {{vendor_form.vendor_type}} </td>
+                <td style ="font-size: 15px;font-family: sans-serif;">Tipo de Proveedor</td>
+                <td>{{ vendor_form.vendor_type }}</td>
             </tr>
         </table>
         <br>
-        <button type="submit">Crear Proveedor </button>
-    </form>
+        <button type="submit">Crear Proveedor</button>
+    </form> 
     <br>
-
     {% if vendor_exist %}
-    <h3 style="font-size: 12px; font-family: sans-serif; color:rgb(250, 5, 5);"> Proveedor Duplicado </h3>
+    <h3 style="font-size: 12px; font-family: sans-serif; color:rgb(255, 0, 0);"> Este Proveedor ya existe </h3>  
     {% endif %}
-
-    <br>
 
     <a style = "font-family: sans-serif; font-size: smaller;" href="{% url 'home' %} "> Regresar a inicio </a>
 
