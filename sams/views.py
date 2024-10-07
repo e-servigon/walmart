@@ -46,7 +46,7 @@ def vendor (request):
                     data_context['vendor_exist'] = True
             except:        
                 vendor_form.save()
-                return render(request,'vendor.html',data_context)
+                return redirect('vendor')
 
     return render(request,'vendor.html',data_context)
 

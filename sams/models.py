@@ -14,7 +14,7 @@ class Vendor(models.Model):
     vendor_name = models.CharField(max_length=255)
     vendor_type = models.CharField(max_length=255)
     
-    created_date = models.DateTimeField(default=timezone.now(), blank=True, null=True)
+    created_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
 
 
     def __str__(self):
