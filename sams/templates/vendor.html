@@ -20,12 +20,14 @@
             <tr>
                 <th style="font-family: sans-serif;"> Nombre Proveedor</th>
                 <th style="font-family: sans-serif;"> Tipo Proveedor</th>
+                <th style="font-family: sans-serif;"> Opciones</th>
             </tr>
     
         {% for vendor in vendor_list %}
         <tr>
             <td>{{ vendor.vendor_name }}</td>
             <td>{{ vendor.vendor_type }}</td>
+            <td> <a style="font-size: 15px; font-family: sans-serif" href="{% url 'updatevendor' vendor.id %}"> Actualizar Proveedor </a></td>
         </tr>
         {% endfor %}
 

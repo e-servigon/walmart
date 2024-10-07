@@ -26,7 +26,7 @@ def createuser (request):
             return redirect('login')
     return render(request,'create_user.html',contexto)
 
-
+@login_required
 def vendor (request):
     vendor_list = Vendor.objects.all()
     vendor_count= Vendor.objects.count()
@@ -47,9 +47,21 @@ def vendor (request):
             except:        
                 vendor_form.save()
                 return render(request,'vendor.html',data_context)
-            
-        
+
     return render(request,'vendor.html',data_context)
 
+@login_required
+def update_vendor (request, vendor_id):
+    vendor = Vendor.objects.get(pk=vendor_id)
+    edit_vendor_form = EditVendorForm()
+    data_context = {'vendor':vendor,'edit_vendor_form':edit_vendor_form}
+    print(vendor)
+    
+    if request.method == "POST":
+        print(request.POST)
+        formulario = EditVendorForm(request.POST, instance = vendor)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('vendor')
 
-
+    return render(request,'update_vendor.html',data_context)

@@ -22,3 +22,8 @@ class CreateVendorForm(forms.ModelForm):
     class Meta:
         model = Vendor
         fields = "__all__"
+
+class EditVendorForm(forms.ModelForm):
+    class Meta:
+        model = Vendor
+        fields =['vendor_type']

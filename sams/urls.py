@@ -20,5 +20,7 @@ from . import views
 urlpatterns = [
     path('',views.home,name = 'home'),
     path('newuser/',views.createuser, name= 'createuser'),
-    path('vendor/',views.vendor, name= 'vendor') 
+    path('vendor/',views.vendor, name= 'vendor'),
+    path('updatevendor/<int:vendor_id>',views.update_vendor, name ='updatevendor')
+
 ]
