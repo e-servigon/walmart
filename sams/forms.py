@@ -1,5 +1,6 @@
 from django import forms
 from .models import ExtendedData, Vendor
+from django.forms import Textarea 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
@@ -21,6 +22,9 @@ class UserProfileForm(forms.ModelForm):
 class CreateVendorForm(forms.ModelForm):
     class Meta:
         model = Vendor
+        widgets = {
+            'sentiment_comments': Textarea(attrs={'cols': 80, 'rows': 5}),
+        }
         fields = "__all__"
 
 class EditVendorForm(forms.ModelForm):

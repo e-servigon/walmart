@@ -20,6 +20,8 @@
             <tr>
                 <th style="font-family: sans-serif;"> Nombre Proveedor</th>
                 <th style="font-family: sans-serif;"> Tipo Proveedor</th>
+                <th style="font-family: sans-serif;"> Foto Exterior</th>
+                <th style="font-family: sans-serif;"> Emocion</th>
                 <th style="font-family: sans-serif;"> Opciones</th>
             </tr>
     
@@ -27,7 +29,14 @@
         <tr>
             <td>{{ vendor.vendor_name }}</td>
             <td>{{ vendor.vendor_type }}</td>
+            {% if vendor.picture %}
+            <td><img src="{{ vendor.picture.url }}" width="150" height="200"></td>
+            {% else %}
+            <td>Sin Foto</td>
+            {% endif %}
+            <td>{{ vendor.sentiment_result}}</td>
             <td> <a style="font-size: 15px; font-family: sans-serif" href="{% url 'updatevendor' vendor.id %}"> Actualizar Proveedor </a></td>
+            <td> <a style="font-size: 15px; font-family: sans-serif" href="{% url 'deletevendor' vendor.id %}"> Borrar Proveedor </a></td>
         </tr>
         {% endfor %}
 
@@ -36,7 +45,7 @@
 
     <br>
     <h2 style="font-size: 20px; font-family: sans-serif; color:navy;"> Crear Proveedores </h2>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
             <tr>
@@ -46,6 +55,14 @@
             <tr>
                 <td style ="font-size: 15px;font-family: sans-serif;">Tipo de Proveedor</td>
                 <td>{{ vendor_form.vendor_type }}</td>
+            </tr>
+            <tr>
+                <td style ="font-size: 15px;font-family: sans-serif;">Comentario</td>
+                <td>{{ vendor_form.sentiment_comments }}</td>
+            </tr>
+            <tr>
+                <td style ="font-size: 15px;font-family: sans-serif;">Foto Exterior</td>
+                <td>{{ vendor_form.picture }}</td>
             </tr>
         </table>
         <br>

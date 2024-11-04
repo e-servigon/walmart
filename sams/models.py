@@ -13,9 +13,11 @@ class ExtendedData(models.Model):
 class Vendor(models.Model):
     vendor_name = models.CharField(max_length=255)
     vendor_type = models.CharField(max_length=255)
-    
+    picture = models.ImageField(blank=True, null=True, upload_to='')
+    sentiment_comments = models.CharField(blank=True, null=True, max_length=255)
+    sentiment_result = models.CharField(blank=True, null=True, max_length=255)
     created_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
-
+    deleted_date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return 'el vendor es: %s %s ' % (self.vendor_name, self.vendor_type)
