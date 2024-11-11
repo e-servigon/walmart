@@ -82,8 +82,15 @@ WSGI_APPLICATION = 'walmart2023.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': '',  
+        'USER': '',  
+        'PASSWORD': '',  
+        'HOST': 'testdb-e-servigon.h.aivencloud.com',  
+        'PORT': '17459',  
+        'OPTIONS': {  
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'" 
+        }
     }
 }
 
